@@ -1,5 +1,5 @@
-function mssql() {
-	console.log('Mssql');
-	return "mssql ha sido seleccionado";
+var selectAll = require('./lib/selectAll');
+
+module.exports = {
+	selectAll
 }
-module.exports = mssql;

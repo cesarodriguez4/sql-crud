@@ -1,5 +1,5 @@
-function mysql() {
-	console.log('Mysql');
-	return "mysql ha sido seleccionado";
+var selectAll = require('./lib/selectAll');
+
+module.exports = {
+	selectAll
 }
-module.exports = mysql;

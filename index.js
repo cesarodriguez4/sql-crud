@@ -9,8 +9,8 @@ function sqlCrud(obj) {
 		} else if (obj.mode == 'mssql') {
 			response = mssql;
 		} else {
-			let error = New Error({error: 'You must to chosen a database mode'});
-			response = error;
+			let error = "error";
+			response = new Error({error: "No selected"});
 		}
 	} else if (typeof obj === 'string') {
 		if (obj === 'mysql') {

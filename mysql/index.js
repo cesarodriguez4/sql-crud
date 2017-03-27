@@ -1,5 +1,11 @@
-var selectAll = require('./lib/selectAll');
+var select = require('./lib/select');
+var insert = require('./lib/insert');
+var insert = require('./lib/insertWNoExist');
+var updateWhere = require('./lib/update');
 
 module.exports = {
-	selectAll
+	select, 
+	insert, 
+	insertWNoExist, 
+	updateWhere
 }

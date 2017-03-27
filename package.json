@@ -1,10 +1,10 @@
 {
   "name": "sql-crud",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "A module for help with basic CRUD operations for node-mysql and node-mssql",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./test/mysql.spec.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/cesarodriguez4/sql-crud#readme",
   "dependencies": {
-    "node-mssql": "0.0.1",
-    "node-mysql": "^0.4.2"
+    "mssql": "^3.3.0",
+    "mysql": "^2.13.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
   }
 }

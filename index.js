@@ -1,25 +1,18 @@
 const mysql = require('./mysql');
-const mssql = require('./mssql');
 
-function sqlCrud(obj) {
-	var response;
+module.exports = function (obj) {
+	var res;
 	if (typeof obj === 'object') {
 		if (obj.mode == 'mysql') {
-			response = mysql;
-		} else if (obj.mode == 'mssql') {
-			response = mssql;
-		} else {
-			let error = "error";
-			response = new Error({error: "No selected"});
-		}
+			return res = mysql;
+		} 
 	} else if (typeof obj === 'string') {
 		if (obj === 'mysql') {
-			response = mysql;
-		} else if (obj === 'mssql') {
-			response = mssql;
+			return res = mysql;
 		}
+	} 
+	if (!res) {
+		console.log(new Error("No database selected"));
 	}
-	return response;
 }
 
-module.exports = sqlCrud;

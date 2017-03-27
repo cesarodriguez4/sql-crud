@@ -1,1 +1,0 @@
-deleteWRes.js

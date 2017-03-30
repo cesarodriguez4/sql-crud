@@ -37,7 +37,7 @@ connection.query('UPDATE `users` SET `id`=value WHERE 1', function (error, resul
 .
 .
 .
-etc
+
 ```
 
 ### mssql

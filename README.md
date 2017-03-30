@@ -14,11 +14,9 @@ Collaboration is open.
 `` npm install --save-dev sql-crud``
 
 # Concept
-Despite there are several libraries for operate with sql databases, very one has a specific way to do the same operations.    
+Despite there are several libraries for operate with sql databases, every one has a specific way to do the same operations.    
 
 For example:
-
-A  kind if simple statements becomes:
 
 ### mysql
 ```javascript 
@@ -27,13 +25,6 @@ connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
   if (error) throw error;
   console.log('The solution is: ', results[0].solution);
 });
-
-//Update something
-connection.query('UPDATE `users` SET `id`=value WHERE 1', function (error, results, fields) {
-  if (error) throw error;
-  console.log('The solution is: ', results[0].solution);
-});
-
 .
 .
 .
@@ -57,17 +48,17 @@ connection.query('UPDATE `users` SET `id`=value WHERE 1', function (error, resul
 ```
 As you can see every module has a different way to do the same work.    
 
-So why not unify them in one single module?
+So why not unify using the same methods?
 
 # Usage
-Just pass your favorite SQL database as first parameter, the options of the query you want as second parameter, and if you want asyncronized  function.
+Just pass your favorite SQL database as first parameter, the options of the query you want as second parameter, and if you want use an asyncronized  function.
 ```javascript
 var sql = require('sql-crud');
 var crud = new sql('mysql');  //or mssql, postgres, sqlite
 
 //Select something
 crud.select(connection, {select: 'id, name, lastname', where: {id:2}});
-//Update something and do it asynchronously
+//Update something while plays something cool asynchronously
 crud.update(connection, {update: 'users', set: {lastname: 'Rodriguez'}}, function(error, results) {
 //Do something
 });

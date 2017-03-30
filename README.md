@@ -1,14 +1,14 @@
 # sql-crud    
-A module for help with basic CRUD operations for most of the sql databases.  
-### Important
-The current state of this module is in developing, so you can only test with ``mysql`` today.     
+A module for help with basic CRUD operations for most of the sql databases.
+    
 
-However the mission is to cover Mysql, Mssql, postgres, sqlite, etc.    
+### Important    
 
-You can contribute with this project whatever you want.
+**This is not a stable version. I'm just working since March 2017, you can read the concept below**    
 
-Github:    
-https://github.com/cesarodriguez4/sql-crud
+If you are interested [Watch him on github](https://github.com/cesarodriguez4/sql-crud)      
+  
+Collaboration is open.
 
 # Install
 `` npm install --save-dev sql-crud``
@@ -21,7 +21,7 @@ For example:
 A  kind if simple statements becomes:
 
 ### mysql
-``` 
+```javascript 
 //Select something
 connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
   if (error) throw error;
@@ -41,7 +41,7 @@ etc
 ```
 
 ### mssql
-```
+```javascript
 .
 .
 .
@@ -60,27 +60,17 @@ As you can see every module has a different way to do the same work.
 So why not unify them in one single module?
 
 # Usage
-Just pass your favorite SQL database as first parameter and we'll make an irritating CRUD operation for you:
-```
-//Require your prefered sql module
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-  host     : 'host',
-  user     : 'user',
-  password : 'password',
-  database : 'database'
+Just pass your favorite SQL database as first parameter, the options of the query you want as second parameter, and if you want asyncronized  function.
+```javascript
+var sql = require('sql-crud');
+var crud = new sql('mysql');  //or mssql, postgres, sqlite
+
+//Select something
+crud.select(connection, {select: 'id, name, lastname', where: {id:2}});
+//Update something and do it asynchronously
+crud.update(connection, {update: 'users', set: {lastname: 'Rodriguez'}}, function(error, results) {
+//Do something
 });
-
-// Sql-crud goes into action...
-var sql = require("sql-crud");
-var crud = new sql("mysql"); // new sql({mode: 'mysql'}) will works too
-
-//SELECT * FROM table
-crud.select(connection, 'tableName', callback);
-//UPDATE table SET `field` = 'value'
-crud.update(connection, 'tableName', callback);
-//Any other sentence run in one single line ;)
-
 ```
 
 

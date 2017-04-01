@@ -1,6 +1,5 @@
-module.exports = function(con, options, async) {
-	var q = "SELECT * from "+table;
 
+module.exports = function(con, options, async, debug) {
 	/*
 	@options: 
 		select: 'a, b, c' or [{prop: 'documentos', as: 'd'}]
@@ -13,15 +12,41 @@ module.exports = function(con, options, async) {
 		limit: object, 
 		innerJoin: object
 	*/
-	var table = options.from;
-	
-	if (!table) {
-		console.log(new Error("You must define a table for your query."));
-	} else {
+	var q = '';
+	var select = require('../clauses/selectCl');
+	var from = require('../clauses/fromCl');
+	var where = require('../clauses/whereCl');
+	var innerJoin  = require('../clauses/innerJoin');
 
+	var _select = select(options.select);
+	var _from = from(options.from);
+	var _where = where(options.where);
+	var _innerJoin = innerJoin(options.innerJoin);
+
+	var queryFields = {
+		_select, 
+		_from, 
+		_where, 
+		_innerJoin
+	};
+
+	function generateQuery(obj) {
+		if (obj._select && obj._from && obj._innerJoin) {
+			return obj._select + obj._from + obj._innerJoin;
+		} else if (obj._select && obj._from && obj._where) {
+			return obj._select + obj._from + obj._where;
+		} else if (obj._select && obj._from) {
+			return obj._select + obj._from;
+		}
+	return "Sorry, the query you're lookig for doesn't been buit yet.";
 	}
-
-	con.query(q, function(error, rows, fields) {
-		return async(error, rows, fields);
+	if (debug) {
+		console.log(generateQuery(queryFields));
+	}
+	con.query(generateQuery(queryFields), function(error, rows, fields) {
+		if (typeof async == 'function') {
+			return async(error, rows, fields);
+		}
+		return;
 	});
 }

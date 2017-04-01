@@ -63,11 +63,35 @@ crud.update(connection, {update: 'users', set: {lastname: 'Rodriguez'}}, functio
 //Do something
 });
 ```
+# API
+The options explained below are available for use it. If you find some problem please consider open a issue in github.
+## Select:
+```javascript
+crud.select(connection, {select: string, where: object, innerJoin: object}, callback, debugMode );
+```
+### Options:
+- connection[required]:
+The connection object that provides your sql module (mysql, mssql, etc)
+- select [Required]: 
+A string that contains the elements that you want to select.
+In example:
+``select: '*'`` or ``select: 'name, lastname'``
+- where [optional]:
+An object with the values you want to filter. Momentarily `and`, `or` options are not supported.
+In example:
+``where: {id:2}``
+- innerJoin [optional]
+An Object that contains the next following properties:
+```
+{
+table: String, 
+_table:String, 
+field: String or Number
+}
+```
+In example: 
+``innerJoin: {table: 'users1', _table: 'users2', field: 'id'}``    
+will generate ``INNER JOIN users2 ON users1.id = users2.id;`` within the query.
 
-
-
-
-
-
-
-
+# Last Updates    
+- ``03-31-2017`` Now you can use {select, where, innerJoin clauses} within a select Query!    

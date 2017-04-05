@@ -19,6 +19,6 @@ var connection = mysql.createConnection({
 
 var crud = new sql('mysql');
 
-crud.select(connection, {select: '*', from:'transportistas', innerJoin:{table: 'transportistas', _table:'pasajeros', field: 'id'}}, function(error, result) {
+crud.select(connection, {select: '*', from:'transportistas', innerJoin:{table: 'transportistas', _table:'pasajeros', field: 'id'}, where: {" `id`.pasajeros ":2}}, function(error, result) {
 
 }, true);

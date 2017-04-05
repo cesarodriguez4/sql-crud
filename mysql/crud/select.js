@@ -2,20 +2,20 @@
 module.exports = function(con, options, async, debug) {
 	/*
 	@options: 
-		select: 'a, b, c' or [{prop: 'documentos', as: 'd'}]
-		from: string
-		where: object {id: 'id'}
+		-select: 'a, b, c' or [{prop: 'documentos', as: 'd'}]
+		-from: string
+		-where: object {id: 'id'}
 		cond: object {type: 'or', id: 'id'}, 
 		group: string, 
 		having : object, 
 		order: object, 
 		limit: object, 
-		innerJoin: object
+		-innerJoin: object
 	*/
 	var q = '';
-	var select = require('../clauses/selectCl');
-	var from = require('../clauses/fromCl');
-	var where = require('../clauses/whereCl');
+	var select = require('../clauses/select');
+	var from = require('../clauses/from');
+	var where = require('../clauses/where');
 	var innerJoin  = require('../clauses/innerJoin');
 
 	var _select = select(options.select);
@@ -31,7 +31,9 @@ module.exports = function(con, options, async, debug) {
 	};
 
 	function generateQuery(obj) {
-		if (obj._select && obj._from && obj._innerJoin) {
+		if (obj._select && obj._from && obj._innerJoin && obj._where) {
+			return obj._select + obj._from + obj._innerJoin + obj._where;
+		} else if (obj._select && obj._from && obj._innerJoin) {	
 			return obj._select + obj._from + obj._innerJoin;
 		} else if (obj._select && obj._from && obj._where) {
 			return obj._select + obj._from + obj._where;

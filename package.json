@@ -4,7 +4,7 @@
   "description": "A module for help with basic CRUD operations for node-mysql and node-mssql",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon ./test/mysql.spec.js"
+    "test": "mocha ./test/mysql/mysql.spec.js"
   },
   "repository": {
     "type": "git",

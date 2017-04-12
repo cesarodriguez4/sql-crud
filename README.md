@@ -52,7 +52,16 @@ So why not unify using the same methods?
 
 # Usage
 Just pass your favorite SQL database as first parameter, the options of the query you want as second parameter, and if you want use an asyncronized  function.
+
 ```javascript
+var mysql = require('mysql') //Require your db module, in this case, we're using mysql.
+var connection = mysql.createConnection({
+  host     : 'gk90usy5ik2otcvi.cbetxkdyhwsb.us-east-1.rds.yourhost.com',
+  user     : 'ekk1j4ep3qnun9wm',
+  password : 'a8mojldmf0cbr8i6',
+  database : 'w7yh7cpln9w2enpc'
+});
+
 var sql = require('sql-crud');
 var crud = new sql('mysql');  //or mssql, postgres, sqlite
 
@@ -62,14 +71,15 @@ crud.select(connection, {select: 'id, name, lastname', where: {id:2}});
 crud.update(connection, {update: 'users', set: {lastname: 'Rodriguez'}}, function(error, results) {
 //Do something
 });
+
 ```
 # API
 The options explained below are available for use it. If you find some problem please consider open a issue in github.
 ## Select:
 ```javascript
-crud.select(connection, {select: string, where: object, innerJoin: object}, callback, debugMode );
+crud.select(connection, {select: string, where: object, innerJoin: object}, callback, devMode );
 ```
-### Options:
+### Parameters:
 - connection[required]:
 The connection object that provides your sql module (mysql, mssql, etc)
 - select [Required]: 
@@ -93,5 +103,26 @@ In example:
 ``innerJoin: {table: 'users1', _table: 'users2', field: 'id'}``    
 will generate ``INNER JOIN users2 ON users1.id = users2.id;`` within the query.
 
+
+## Update
+```javascript
+crud.update(connection, [{options}], callback, devMode);
+```
+
+### Parameters:
+ - connection [``required``]:    
+The connection object that provides your sql module (mysql, mssql, etc)
+- options [``object``]:
+  - table ``string``
+  - values ``object`` 
+  - where ``object`` 
+    - Example: `` {table: 'users', values: {name: 'Cesar'}, where: {id:1} } ``
+   
+- callback [``function``]: ``function(error, results) {}`` 
+- devMode [boolean]: Turn on a ``console.log`` by query.
+ 
+
+
 # Last Updates    
 - ``03-31-2017`` Now you can use {select, where, innerJoin clauses} within a select Query!    
+- ``04-11-2017`` Update  (with update, set and where clauses within) queries are now available.

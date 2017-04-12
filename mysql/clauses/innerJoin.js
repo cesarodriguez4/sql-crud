@@ -3,11 +3,11 @@ module.exports = function(obj) {
 	var table = obj.table;
 	var _table = obj._table;
 	var field = obj.field;
-	var string = 'INNER JOIN '; 
+	var string = ' INNER JOIN '; 
 	if(table && _table && field) {
 		string += _table + ' ON ';
 		string += table + '.' + field;
-		string += " = " + _table + '.'+ field;
+		string += " = " + _table + '.'+ field + ' ';
 	return string;
 	}
 	return new Error("You must provide the fields for inner Join");

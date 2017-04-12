@@ -14,11 +14,14 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '',
-  database : 'viantti'
+  database : 'users'
 });
 
 var crud = new sql('mysql');
 
-crud.select(connection, {select: '*', from:'transportistas', innerJoin:{table: 'transportistas', _table:'pasajeros', field: 'id'}, where: {" `id`.pasajeros ":2}}, function(error, result) {
-
-}, true);
+crud.update( connection, { table: 'users', values: {first_name:'Ramon', last_name: 'Muchacho'}, where: {id:1}}, function(error, rows) {
+	if (error) {
+		console.log(error);
+	}
+	console.log(rows);
+});

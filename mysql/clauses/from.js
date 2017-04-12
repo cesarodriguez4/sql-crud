@@ -1,3 +1,3 @@
 module.exports = function(table) {
-	return "FROM `" + table+ "` ";
+	return " FROM `" + table+ "` ";
 }

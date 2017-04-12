@@ -1,4 +1,4 @@
-module.exports = function (con, table, obj, whash, wkey, async) {
+module.exports = function (con, obj, async, logs) {
 	/*
 	@options: 
 		update, 
@@ -6,34 +6,26 @@ module.exports = function (con, table, obj, whash, wkey, async) {
 		where, 
 		orderBy,
 		limit 
-	*/
-	var str = "UPDATE `"+ table +"` SET ";	
-	var keys = Object.keys(obj);
-	for ( i = 0; i<keys.length; i++ ) {
-		if(i !== keys.length - 1) {
-			str+='`';
-			str+= keys[i];
-			str+='`';
-			str+= " = ";
-			str+= "'";
-			str += obj[keys[i]];
-			str += "'"
-			str+= ',';
-		} else {
-			str+='`';
-			str+= keys[i];
-			str+='`';
-			str+= " = ";
-			str+= "'";
-			str += obj[keys[i]];
-			str += "'"
-		}
+*/	
+	var query = ''; 
+	var table = obj.table;
+	var update = 'UPDATE `'+table+'` ';
+	var set = require('../clauses/set')(obj.values);
+	var where = require('../clauses/where')(obj.where);
+
+	if (obj.where) {
+		query =  update + set + where;
+	} else {
+		query =  update + set;
 	}
-	str += " WHERE ";
-	str += "`" + whash + "`";
-	str += " = ";
-	str +=  wkey ;
-	con.query(str, function(error, row, fields) {
-		async(error, row, fields);
+	
+	if (logs) {
+		console.log(query);
+	}
+
+	con.query(query, function(error, row, fields) {
+		if (async) {
+			async(error, row, fields);
+		}
 	});
 }

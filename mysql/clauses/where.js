@@ -8,7 +8,7 @@ module.exports = function(obj) {
 				string += "`"+keys[i]+"` = '"+ obj[keys[i]] + "'";
 				string+= ',';
 			} else {
-				string += "`"+keys[i]+"` = '"+ obj[keys[i]] + "'";
+				string += "`"+keys[i]+"` = '"+ obj[keys[i]] + "' ";
 			}
 		}
 	}

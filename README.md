@@ -124,5 +124,6 @@ The connection object that provides your sql module (mysql, mssql, etc)
 
 
 # Last Updates    
-- ``03-31-2017`` Now you can use {select, where, innerJoin clauses} within a select Query!    
-- ``04-11-2017`` Update  (with update, set and where clauses within) queries are now available.
+- ``31-03-2017`` Now you can use {select, where, innerJoin clauses} within a select Query!    
+- ``11-04-2017`` Update  (with update, set and where clauses within) queries are now available.
+- ``01-05-2017`` Bug in select module related to innerJoin absence.

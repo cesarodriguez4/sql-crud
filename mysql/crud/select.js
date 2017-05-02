@@ -21,7 +21,12 @@ module.exports = function(con, options, async, debug) {
 	var _select = select(options.select);
 	var _from = from(options.from);
 	var _where = where(options.where);
-	var _innerJoin = innerJoin(options.innerJoin);
+	
+	var _innerJoin = false;
+	if (options.innerJoin) {
+	innerJoin = innerJoin(options.innerJoin);	
+	}
+	
 
 	var queryFields = {
 		_select, 

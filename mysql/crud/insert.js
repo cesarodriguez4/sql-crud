@@ -1,38 +1,18 @@
-module.exports = function(con, table, obj, async ) {
-	/*
-	@options: 
-		into, 
-		partition, 
-		set or select, 
-		on duplicate key update, 
-	*/
+module.exports = function (con, obj, async, logs) {	
+	var query = ''; 
+	var insertInto = require('../clauses/insertInto')(obj.insertInto);
+	var valuesToInsert = require('../clauses/valuesToInsert')(obj.values);
+	var values = require('../clauses/values')(obj.values);
 
-	var str = "INSERT INTO `"+ table +"` ( ";	
-	var keys = Object.keys(obj);
-	for ( i = 0; i<keys.length; i++ ) {
-		if(i !== keys.length - 1) {
-			str+='`';
-			str+= keys[i];
-			str+='`';
-			str+= ',';
-		} else {
-			str+='`';
-			str+= keys[i];
-			str+='`';
-		}
+	query =  insertInto + valuesToInsert +  values;
+
+	if (logs) {
+		console.log(query);
 	}
-	str += ')';
-	str += ' VALUES (';
-	for ( i = 0 ; i < keys.length; i ++ ) {
-		if(i !== keys.length - 1) {
-			str+= con.escape(obj[keys[i]]);
-			str+= ',';
-		} else {
-			str+= con.escape(obj[keys[i]]);
+
+	con.query(query, function(error, row, fields) {
+		if (async) {
+			async(error, row, fields);
 		}
-	}
-	str+= ' )';
-	con.query(str, function(error, rows, fields) {
-		async(error, rows, fields);
 	});
-}
+};

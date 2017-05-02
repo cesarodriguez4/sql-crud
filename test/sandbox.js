@@ -19,9 +19,13 @@ var connection = mysql.createConnection({
 
 var crud = new sql('mysql');
 
-crud.update( connection, { table: 'users', values: {first_name:'Ramon', last_name: 'Muchacho'}, where: {id:1}}, function(error, rows) {
-	if (error) {
-		console.log(error);
-	}
-	console.log(rows);
-});
+crud.insert(connection, 
+{ insertInto: 'users',
+  values: {
+    username: 'Miguel', 
+    first_name: 'ronri', 
+    last_name: 'Perez'
+  }}, (err, res) => {
+    console.log(err);
+    console.log(res);
+  }, true);

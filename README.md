@@ -77,7 +77,7 @@ crud.update(connection, {update: 'users', set: {lastname: 'Rodriguez'}}, functio
 The options explained below are available for use it. If you find some problem please consider open a issue in github.
 ## Select:
 ```javascript
-crud.select(connection, {select: string, where: object, innerJoin: object}, callback, devMode );
+crud.select(connection, {select: string, where: object, innerJoin: object}, callback, logs );
 ```
 ### Parameters:
 - connection[required]:
@@ -104,9 +104,24 @@ In example:
 will generate ``INNER JOIN users2 ON users1.id = users2.id;`` within the query.
 
 
+## Insert
+```javascript
+crud.insert(connection, [{options}], callback, logs);
+```
+
+### Parameters:
+ - connection [``required``]:    
+The connection object that provides your sql module (mysql, mssql, etc)
+- options [``object``]:
+  - insertInto ``string``: The table
+  - values ``object`` 
+   
+- callback [``function``]: ``function(error, results) {}`` 
+- logs [boolean]: Turn on a ``console.log`` by query.
+
 ## Update
 ```javascript
-crud.update(connection, [{options}], callback, devMode);
+crud.update(connection, [{options}], callback, logs);
 ```
 
 ### Parameters:
@@ -119,12 +134,26 @@ The connection object that provides your sql module (mysql, mssql, etc)
     - Example: `` {table: 'users', values: {name: 'Cesar'}, where: {id:1} } ``
    
 - callback [``function``]: ``function(error, results) {}`` 
-- devMode [boolean]: Turn on a ``console.log`` by query.
- 
+- logs [boolean]: Turn on a ``console.log`` by query.
 
+## Delete
+```javascript
+crud.delete(connection, [{options}], callback, logs);
+```
 
-# Last Updates    
-- ``02-05-2017`` Now INSERT queries are enabled.
+### Parameters:
+ - connection [``required``]:    
+The connection object that provides your sql module (mysql, mssql, etc)
+- options [``object``]:
+  - from ``string``: The database table
+  - where ``object`` 
+   
+- callback [``function``]: ``function(error, results) {}`` 
+- logs [boolean]: Turn on a ``console.log`` by query.
+
+# Last Updates 
+- ``02-05-2017 v0.2.1`` Now DELETE queries are enabled.
+- ``02-05-2017 v0.2.0`` Now INSERT queries are enabled.
 - ``01-05-2017`` Bug in select module related to innerJoin absence.
 - ``11-04-2017`` Update  (with update, set and where clauses within) queries are now available.    
 - ``31-03-2017`` Now you can use {select, where, innerJoin clauses} within a select Query!    

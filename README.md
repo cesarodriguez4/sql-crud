@@ -151,12 +151,10 @@ The connection object that provides your sql module (mysql, mssql, etc)
 - callback [``function``]: ``function(error, results) {}`` 
 - logs [boolean]: Turn on a ``console.log`` by query.
 
-# Last Updates 
+# Last Updates
+- ``09-05-2017 v0.2.2`` WHERE clause now supports 2 or more parameters concatening with AND (OR will be supported later).
 - ``02-05-2017 v0.2.1`` Now DELETE queries are enabled.
 - ``02-05-2017 v0.2.0`` Now INSERT queries are enabled.
 - ``01-05-2017`` Bug in select module related to innerJoin absence.
 - ``11-04-2017`` Update  (with update, set and where clauses within) queries are now available.    
 - ``31-03-2017`` Now you can use {select, where, innerJoin clauses} within a select Query!    
-
-
-

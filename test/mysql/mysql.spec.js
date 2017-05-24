@@ -20,7 +20,7 @@ describe("Mysql clauses", () => {
 		var whereClause = require("../../mysql/clauses/where");
 		it("Should return =>  where `a`='foo', `b`='bar' ", () => {
 			chai.expect(whereClause({a: 'foo', b: 'bar'}))
-			.to.equal(" WHERE `a` = 'foo',`b` = 'bar' ");
+			.to.equal(" WHERE `a` = 'foo' AND `b` = 'bar' ");
 		});
 	});
 	describe("from Clause", () => {
@@ -33,7 +33,7 @@ describe("Mysql clauses", () => {
 	describe("innerJoin Clause", () => {
 		var innerjoinClause = require("../../mysql/clauses/innerJoin");
 		it("Should return => INNER JOIN table2 ON table1.column_name = table2.column_name", () => {
-			chai.expect(innerjoinClause({table: 'table1', _table: 'table2', field: 'column_name'}))
+			chai.expect(innerjoinClause({table: ['table1', 'table2'], on: ['table1.column_name','table2.column_name']}))
 			.to.equal(" INNER JOIN table2 ON table1.column_name = table2.column_name ");
 		});
 	});

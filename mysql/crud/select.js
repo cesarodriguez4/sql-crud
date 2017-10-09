@@ -24,7 +24,7 @@ module.exports = function(con, options, async, debug) {
 	
 	var _innerJoin = false;
 	if (options.innerJoin) {
-	innerJoin = innerJoin(options.innerJoin);	
+	_innerJoin = innerJoin(options.innerJoin);	
 	}
 	
 

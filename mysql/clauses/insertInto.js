@@ -1,3 +1,3 @@
 module.exports = function(table) {
-	return " INSERT INTO " + "`"+table+"` ";
+	return ` INSERT INTO \`${table}\` `;
 }

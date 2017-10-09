@@ -94,13 +94,13 @@ In example:
 An Object that contains the next following properties:
 ```
 {
-table: array, 
-on: array
+table: string, 
+on: string
 }
 ```
 In example: 
-``innerJoin: {table: ['users1', 'users2'], on: ['users1.id', 'users2.id']}``    
-will generate ``INNER JOIN users2 ON users1.id = users2.id;`` within the query.
+``innerJoin: {table: 'USERS', on: 'USERS.id = COMPANY.name'``    
+will generate ``INNER JOIN USERS ON USERS.id = COMPANY.name;`` within the query.
 
 
 ## Insert
@@ -151,6 +151,8 @@ The connection object that provides your sql module (mysql, mssql, etc)
 - logs [boolean]: Turn on a ``console.log`` by query.
 
 # Last Updates
+- ``09-10-2017 v0.2.4`` mysql library was updated from ``2.13.0`` to ``2.15.0`` . 
+- ``09-10-2017 v0.2.4`` INNER JOIN clause was re structured. 
 - ``23-05-2017 v0.2.3`` INNER JOIN clause is updated.
 - ``09-05-2017 v0.2.2`` WHERE clause now supports 2 or more parameters concatening with AND (OR will be supported later).
 - ``02-05-2017 v0.2.1`` Now DELETE queries are enabled.

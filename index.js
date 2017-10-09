@@ -1,6 +1,6 @@
 const mysql = require('./mysql');
 
-module.exports = function (obj) {
+module.exports = function(obj) {
 	var res;
 	if (typeof obj === 'object') {
 		if (obj.mode == 'mysql') {

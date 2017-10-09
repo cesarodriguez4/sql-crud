@@ -18,12 +18,13 @@ var connection = mysql.createConnection({
 });
 
 var crud = new sql('mysql');
+console.log('hola');
 crud.select(connection, {
 	select: '*',
 	from: 'USUARIOS',
 	where: {usuario: 'CXGCQDN'},
 	innerJoin: {
-		table: ['USUARIOS','ESTABLECIMIENTOS'],
-		on: ['USUARIOS.codigo','ESTABLECIMIENTOS.usuario']
+		table: 'USUARIOS',
+		on: 'USUARIOS.id = ESTABLECIMIENTOS.id'
 	}
-}, true);
+}, true, true);

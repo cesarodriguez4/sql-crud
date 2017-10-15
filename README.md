@@ -151,6 +151,7 @@ The connection object that provides your sql module (mysql, mssql, etc)
 - logs [boolean]: Turn on a ``console.log`` by query.
 
 # Last Updates
+- ``14-10-2017 v0.2.5`` Fixed fatal error in delete operations.
 - ``09-10-2017 v0.2.4`` mysql library was updated from ``2.13.0`` to ``2.15.0`` . 
 - ``09-10-2017 v0.2.4`` INNER JOIN clause was re structured. 
 - ``23-05-2017 v0.2.3`` INNER JOIN clause is updated.

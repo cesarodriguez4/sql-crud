@@ -7,5 +7,5 @@ module.exports = {
 	select,
 	insert, 
 	update, 
-	Delete
+	delete : Delete
 };

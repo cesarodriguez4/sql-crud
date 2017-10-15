@@ -19,12 +19,7 @@ var connection = mysql.createConnection({
 
 var crud = new sql('mysql');
 console.log('hola');
-crud.select(connection, {
-	select: '*',
+crud.delete(connection, {
 	from: 'USUARIOS',
-	where: {usuario: 'CXGCQDN'},
-	innerJoin: {
-		table: 'USUARIOS',
-		on: 'USUARIOS.id = ESTABLECIMIENTOS.id'
-	}
+	where: {id: 1}
 }, true, true);
